@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('Verify a user able to register', async ({ page }) => {
+  await page.goto('https://jpetstore.aspectran.com/catalog/');
+  await expect(page.locator('#SidebarContent')).toContainText('Fish Saltwater, Freshwater Dogs Various Breeds Cats Various Breeds, Exotic Varieties Reptiles Lizards, Turtles, Snakes Birds Exotic Varieties');
+  await page.getByRole('link', { name: 'Sign In' }).click();
+  await expect(page.locator('#Signon')).toContainText('Please enter your username and password.');
+  await page.getByRole('link', { name: 'Register Now!' }).click();
+  await expect(page.locator('#CenterForm')).toContainText('User Information');
+  await page.locator('input[name="username"]').click();
+  await page.locator('input[name="username"]').fill('Tommy32');
+  await page.locator('input[name="password"]').click();
+  await page.locator('input[name="password"]').fill('Pancakes');
+  await page.locator('input[name="repeatedPassword"]').click();
+  await page.locator('input[name="repeatedPassword"]').fill('Pancakes');
+  await page.locator('input[name="firstName"]').click();
+  await page.locator('input[name="firstName"]').fill('Tommy');
+  await page.locator('input[name="lastName"]').click();
+  await page.locator('input[name="lastName"]').fill('Fury');
+  await page.locator('input[name="email"]').click();
+  await page.locator('input[name="email"]').fill('Tommyfury@gmail.com');
+  await page.locator('input[name="phone"]').click();
+  await page.locator('input[name="phone"]').fill('9293887777');
+  await page.locator('input[name="address1"]').click();
+  await page.locator('input[name="address1"]').fill('66-25 broadway');
+  await page.locator('input[name="address2"]').click();
+  await page.locator('input[name="address2"]').fill('APT 508');
+  await page.locator('input[name="city"]').click();
+  await page.locator('input[name="city"]').fill('queens');
+  await page.locator('input[name="state"]').click();
+  await page.locator('input[name="state"]').fill('new york');
+  await page.locator('input[name="zip"]').click();
+  await page.locator('input[name="zip"]').fill('11011');
+  await page.locator('input[name="country"]').click();
+  await page.locator('input[name="country"]').fill('America');
+  await page.getByRole('button', { name: 'Save Account Information' }).click();
+});
